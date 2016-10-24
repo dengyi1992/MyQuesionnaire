@@ -77,11 +77,14 @@ public class QuestionItemAdapter extends BaseAdapter {
                 break;
             case 1:
                 RadioGroup radioGroup = new RadioGroup(holder.llContent.getContext());
-                radioGroup.removeAllViews();
+//                radioGroup.removeAllViews();
                 for (int j = 0; j < options.size(); j++) {
                     RadioButton child = new RadioButton(holder.llContent.getContext());
                     final Detail.QuestionsBean.Option option = options.get(j);
                     child.setText(option.getContent());
+                    if (object.getAnswer().equals(option.get_id())){
+                        child.setChecked(true);
+                    }
                     child.setTextColor(context.getResources().getColor(R.color.colorAccent));
                     child.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
@@ -101,6 +104,9 @@ public class QuestionItemAdapter extends BaseAdapter {
                     CheckBox child = new CheckBox(holder.llContent.getContext());
                     final Detail.QuestionsBean.Option option = options.get(j);
                     child.setText(option.getContent());
+                    if (object.getAnswer().contains(option.get_id())){
+                        child.setChecked(true);
+                    }
                     child.setTextColor(context.getResources().getColor(R.color.colorAccent));
                     child.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
@@ -120,6 +126,7 @@ public class QuestionItemAdapter extends BaseAdapter {
                 break;
             case 3:
                 EditText child = new EditText(holder.llContent.getContext());
+                child.setText(object.getAnswer());
                 child.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
