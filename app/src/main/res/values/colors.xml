@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff4081</color>
     <color name="write">#ffffff</color>
+    <color name="green_submit">#81c784</color>
+    <color name="yellow_submit">#ffb74d</color>
+
 </resources>

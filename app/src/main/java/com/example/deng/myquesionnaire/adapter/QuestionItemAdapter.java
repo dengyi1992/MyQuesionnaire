@@ -62,7 +62,7 @@ public class QuestionItemAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void initializeViews(final Detail.QuestionsBean object, ViewHolder holder, int position) {
+    private void initializeViews(final Detail.QuestionsBean object, final ViewHolder holder, int position) {
         //TODO implement
 //        TextView tv = new TextView(holder.llContent.getContext());
 //        tv.setText("Hello World");
@@ -71,7 +71,11 @@ public class QuestionItemAdapter extends BaseAdapter {
         int i = position + 1;
         holder.tvheader.setText("第" + i + "题");
         List<Detail.QuestionsBean.Option> options = object.getOptions();
-
+        if (object.getAnswer().length()<=0){
+            holder.tvheader.setBackgroundColor(context.getResources().getColor(R.color.yellow_submit));
+        }else {
+            holder.tvheader.setBackgroundColor(context.getResources().getColor(R.color.green_submit));
+        }
         switch (object.getType()) {
             case 0:
                 break;
@@ -89,6 +93,7 @@ public class QuestionItemAdapter extends BaseAdapter {
                     child.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            holder.tvheader.setBackgroundColor(context.getResources().getColor(R.color.green_submit));
                             if (isChecked){
                                 object.setAnswer(option.get_id());
                             }
@@ -113,6 +118,7 @@ public class QuestionItemAdapter extends BaseAdapter {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             String answer = object.getAnswer();
                             if (isChecked){
+                                holder.tvheader.setBackgroundColor(context.getResources().getColor(R.color.green_submit));
                                 if (!answer.contains(option.get_id()+",")){
                                     object.setAnswer(answer+option.get_id()+",");
                                 }
@@ -140,6 +146,7 @@ public class QuestionItemAdapter extends BaseAdapter {
 
                     @Override
                     public void afterTextChanged(Editable s) {
+                        holder.tvheader.setBackgroundColor(context.getResources().getColor(R.color.green_submit));
                         object.setAnswer(s.toString());
                     }
                 });

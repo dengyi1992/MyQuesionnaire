@@ -61,6 +61,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isFinshed()) {
+
                     Toast.makeText(DetailActivity.this, "提交", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(DetailActivity.this, "还有未填写问题", Toast.LENGTH_LONG).show();
@@ -72,10 +73,11 @@ public class DetailActivity extends AppCompatActivity {
 
     private boolean isFinshed() {
         JsonObject jsonObject = new JsonObject();
-        for (Detail.QuestionsBean qb :
-                mList) {
+        for (int i = 0; i < mList.size(); i++) {
+            Detail.QuestionsBean qb=mList.get(i);
             System.out.println(qb.getAnswer());
             if (qb.getAnswer().equals("")) {
+                listView.smoothScrollToPosition(i);
                 return false;
             } else {
                 jsonObject.addProperty(qb.get_id(), qb.getAnswer());
@@ -86,6 +88,21 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         }
+//        for (Detail.QuestionsBean qb :
+//                mList) {
+//
+//            System.out.println(qb.getAnswer());
+//            if (qb.getAnswer().equals("")) {
+//                return false;
+//            } else {
+//                jsonObject.addProperty(qb.get_id(), qb.getAnswer());
+//                if (qb.getType() == 2) {
+//
+//                    String value = String.valueOf(qb.getAnswer());
+//                    jsonObject.addProperty(qb.get_id(), value.substring(0,value.length()-1));
+//                }
+//            }
+//        }
         senData(jsonObject.toString());
 
         return true;
