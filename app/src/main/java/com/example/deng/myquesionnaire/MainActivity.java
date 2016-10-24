@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
-                        .url("http://192.168.199.127:8080/data/questionnairesList")
+                        .url(CONSTANT.QUEURL +"/data/questionnairesList")
                         .get()
                         .addHeader("cache-control", "no-cache")
                         .addHeader("postman-token", "79bffb57-760d-2eb5-9d16-130c1dca31f6")

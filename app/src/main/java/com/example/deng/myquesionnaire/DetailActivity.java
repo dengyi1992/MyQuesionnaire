@@ -23,7 +23,6 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
@@ -98,7 +97,7 @@ public class DetailActivity extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
         RequestBody body = RequestBody.create(mediaType, "answer=" + s);
         final Request request = new Request.Builder()
-                .url("http://192.168.199.127:8080/questionnaire/m/"+id)
+                .url(CONSTANT.QUEURL + "/questionnaire/m/" +id)
                 .post(body)
                 .addHeader("content-type", "application/x-www-form-urlencoded")
                 .addHeader("cache-control", "no-cache")
@@ -135,7 +134,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         Request request = new Request.Builder()
-                .url("http://192.168.199.127:8080/user/questionnaire/" + id)
+                .url(CONSTANT.QUEURL +"/user/questionnaire/" + id)
                 .get()
                 .build();
 
