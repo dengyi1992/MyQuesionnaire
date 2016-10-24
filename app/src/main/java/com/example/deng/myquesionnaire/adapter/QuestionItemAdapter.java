@@ -118,6 +118,9 @@ public class QuestionItemAdapter extends BaseAdapter {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             String answer = object.getAnswer();
                             if (isChecked){
+                                if (object.getAnswer().length()<=0){
+                                    object.setAnswer("----");
+                                }
                                 holder.tvheader.setBackgroundColor(context.getResources().getColor(R.color.green_submit));
                                 if (!answer.contains(option.get_id()+",")){
                                     object.setAnswer(answer+option.get_id()+",");
